@@ -7,5 +7,6 @@ Route::group([
 ], function() {
     
     Route::post('binnacle/process', 'BinnacleController@process');
+    Route::post('binnacle/listeners/process', 'BinnacleListenersController@process');
     
 });

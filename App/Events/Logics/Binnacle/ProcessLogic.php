@@ -2,6 +2,7 @@
 
 use Melisa\core\LogicBusiness;
 use App\Core\Repositories\BinnacleRepository;
+use App\Core\Repositories\BinnacleListenersRepository;
 use App\Core\Repositories\ListenersRepository;
 
 /**
@@ -15,14 +16,17 @@ class ProcessLogic
     
     protected $binnacle;
     protected $listeners;
+    protected $binnacleListeners;
     
     public function __construct(
         BinnacleRepository $binnacle,
-        ListenersRepository $listeners
+        ListenersRepository $listeners,
+        BinnacleListenersRepository $binnacleListeners
     ) {
         
         $this->binnacle = $binnacle;
         $this->listeners = $listeners;
+        $this->binnacleListeners = $binnacleListeners;
         
     }
     
@@ -65,15 +69,46 @@ class ProcessLogic
             
         }
         
-        $idsBel = $this->createBinnacleListeners($listeners);
-        exit(dd($idsBel));
-        if( !$idsBel) {
+        $idsBl = $this->createBinnacleListeners($input['idBinnacle'], $listeners);
+        
+        if( !$idsBl) {
             
             return $this->binnacle->rollback();
             
-        }       
+        }
         
-        exit(dd('list'));
+        if( !$this->updateBinnacle($input['idBinnacle'], true)) {
+            
+            return $this->binnacle->rollback();
+            
+        }
+        
+        if( !$this->publishBinnacleListeners($idsBl)) {
+            
+            return $this->binnacle->rollback();
+            
+        }
+        
+        $this->binnacle->commit();
+        return $idsBl;
+        
+    }
+    
+    public function publishBinnacleListeners($idsBel) {
+        
+        foreach($idsBel as $idBel) {
+            
+            \Redis::publish('new.job', json_encode([
+                'urlRun'=>config('app.url') . 'events.php/api/v1/binnacle/listeners/process',
+                'dateRun'=>time() * 1000,
+                'postData'=>[
+                    'idBinnacleListener'=>$idBel,
+                ],
+            ]));
+            
+        }
+        
+        return true;
         
     }
     
@@ -109,9 +144,37 @@ class ProcessLogic
         
     }
     
-    public function createBinnacleListeners(&$listeners) {
-        exit(dd($listeners));
-        return $this->binnacleListeners->creates($listeners);
+    public function createBinnacleListeners($idBinnacle, &$listeners) {
+        
+        $flag = true;
+        $idsListeners = [];
+        
+        foreach($listeners as $listener) {
+            
+            $idListener = $this->binnacleListeners->create([
+                'idBinnacleListenerStatus'=>BinnacleListenersRepository::NEW_RECORD,
+                'idBinnacle'=>$idBinnacle,
+                'idListener'=>$listener->id,
+            ]);
+            
+            if( !$idListener) {
+                
+                $flag = false;
+                break;
+                
+            }
+            
+            $idsListeners []= $idListener;
+            
+        }
+        
+        if( !$flag) {
+            
+            return false;
+            
+        }
+        
+        return $idsListeners;
         
     }
     
