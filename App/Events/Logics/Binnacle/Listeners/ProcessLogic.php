@@ -79,7 +79,7 @@ class ProcessLogic
         }
         
         if( !$this->isValidBinnacleListener($binnacleListener)) {
-            exit(dd('error'));
+            
             return $this->binnacleListeners->rollback();
             
         }
@@ -149,17 +149,13 @@ class ProcessLogic
     
     public function isValidBinnacleListener(&$binnacleListener) {
         
-        if( $binnacleListener->idBinnacleListenerStatus === BinnacleRepository::NEW_RECORD) {
+        if( $binnacleListener->idBinnacleListenerStatus === $this->binnacleListeners->getStatus('new')) {
             
             return true;
             
         }
         
-        $this->debug('record binnacle listener is indicted {e}', [
-            'b'=>$binnacleListener->id
-        ]);
-        
-        return $this->error('intent process record binnacle listener {b}', [
+        return $this->error('intent process record binnacle listener {b} is not new status', [
             'b'=>$binnacleListener->id
         ]);
         
