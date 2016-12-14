@@ -141,13 +141,13 @@ class ProcessLogic
         
     }
     
-    public function updateBinnacle($idBinnacle, $indicted = true) {
+    public function updateBinnacle($idBinnacle, $processed = true) {
         
         return $this->binnacle->update([
-            'idBinnacleStatus'=>$indicted ? 
+            'idBinnacleStatus'=>$processed ? 
                 BinnacleRepository::INDICTED : BinnacleRepository::PROCESSING,
-            'isIndicted'=>true,
-            'indictedAt'=>date('Y-m-d H:i:s')
+            'isProcessed'=>$processed,
+            'processedAt'=>$processed ? date('Y-m-d H:i:s') : null
         ], $idBinnacle);
         
     }
