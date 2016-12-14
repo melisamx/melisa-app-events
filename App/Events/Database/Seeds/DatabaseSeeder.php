@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ApplicationSeeder::class);
         $this->call(OptionsSeeder::class);
         $this->call(UsersSeeder::class);
-//        $this->call(ModulesSeeder::class);
+        $this->call(EventsSeeder::class);
 //        $this->call(AssetsSeeder::class);
         
     }

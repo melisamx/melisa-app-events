@@ -96,10 +96,18 @@ class ProcessLogic
     
     public function publishBinnacleListeners($idsBel) {
         
+        $appUrl = config('app.url');
+        
+        if( !melisa('string')->endsWith($appUrl, '/')) {
+            
+            $appUrl .= '/';
+            
+        }
+        
         foreach($idsBel as $idBel) {
             
             \Redis::publish('new.job', json_encode([
-                'urlRun'=>config('app.url') . 'events.php/api/v1/binnacle/listeners/process',
+                'urlRun'=>$appUrl . 'events.php/api/v1/binnacle/listeners/process',
                 'dateRun'=>time() * 1000,
                 'postData'=>[
                     'idBinnacleListener'=>$idBel,
