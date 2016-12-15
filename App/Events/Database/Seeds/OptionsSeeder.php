@@ -1,17 +1,15 @@
 <?php namespace App\Events\Database\Seeds;
 
-use Illuminate\Database\Seeder;
-use Melisa\Laravel\Database\InstallOption;
+use Melisa\Laravel\Database\InstallSeeder;
 
-class OptionsSeeder extends Seeder
+class OptionsSeeder extends InstallSeeder
 {
-    use InstallOption;
     
     public function run()
     {
         
-        $this->installOption('option.lamina.access', [
-            'name'=>'Option main de aplicación laimina',
+        $this->installOption('option.events.access', [
+            'name'=>'Option main de aplicación events',
             'text'=>'Events',
             'isSubMenu'=>true
         ]);
