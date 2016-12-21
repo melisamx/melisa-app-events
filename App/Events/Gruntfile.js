@@ -18,8 +18,6 @@ module.exports = function(grunt) {
             all: {
                 files: {
 //                    '<%= main.output %>css/app.css': '<%= main.src %>less/app.less',
-                    '<%= main.output %>css/programaciones-phone.css': '<%= main.src %>less/programaciones-phone.less',
-                    '<%= main.output %>css/tarjas-phone.css': '<%= main.src %>less/tarjas-phone.less'
                 }
             }
         },

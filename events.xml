@@ -9,13 +9,13 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Application Sencha Test Suite">
-            <directory suffix="Test.php">./App/Lamina/tests</directory>
+        <testsuite name="Application Events">
+            <directory suffix="Test.php">./App/Events/tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./App/Lamina</directory>
+            <directory suffix=".php">./App/Events</directory>
         </whitelist>
     </filter>
     <php>
