@@ -8,8 +8,7 @@ class ModulesPhoneSeeder extends Seeder
     public function run()
     {
         
-        $this->call(Phone\ProgramacionesViewSeeder::class);
-        $this->call(Phone\TarjasAddSeeder::class);
+        
         
     }
     

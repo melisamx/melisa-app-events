@@ -2,20 +2,6 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.WrapperController', {
     extend: 'Melisa.core.ViewController',
     alias: 'controller.eventsbinnacleviewwrapper',
     
-    requires: [
-        'Melisa.util.faker.Faker'
-    ],
-    
-    onRender: function() {
-        
-        var me = this,
-            model = me.getViewModel();
-        
-        model.getStore('events').setData(jsf(model.get('faker.events')));
-        model.getStore('listeners').setData(jsf(model.get('faker.listeners')));
-        
-    },
-    
     onSelectionchangeEventsGrid: function(sel, models) {
         
         var me = this,
@@ -33,7 +19,8 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.WrapperController', {
         
         panDetails.expand();
         panDetails.update({
-            data: Ext.isObject(data) ? JSON.stringify(data, null, 4) : 'JSON mal formado'
+            data: Ext.isObject(data) ? JSON.stringify(data, null, 4) : 
+                data === null ? 'Sin datos' : 'JSON mal formado'
         });
         
     },

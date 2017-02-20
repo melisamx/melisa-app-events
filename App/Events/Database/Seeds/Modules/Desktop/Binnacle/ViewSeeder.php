@@ -1,8 +1,8 @@
-<?php namespace App\Events\Database\Seeds\Modules\Desktop;
+<?php namespace App\Events\Database\Seeds\Modules\Desktop\Binnacle;
 
 use Melisa\Laravel\Database\InstallSeeder;
 
-class BinnacleViewSeeder extends InstallSeeder
+class ViewSeeder extends InstallSeeder
 {
     
     public function run()

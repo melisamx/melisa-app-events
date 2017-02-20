@@ -8,8 +8,13 @@ class ModulesDesktopSeeder extends Seeder
     public function run()
     {
         
-        $this->call(Desktop\BinnacleViewSeeder::class);
+        $this->binnacle();
         
+    }
+    
+    public function binnacle()
+    {
+        $this->call(Desktop\Binnacle\ViewSeeder::class);
     }
     
 }

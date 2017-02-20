@@ -10,6 +10,7 @@ class ModulesSeeder extends Seeder
         
         $this->call(Modules\ModulesDesktopSeeder::class);
         $this->call(Modules\ModulesPhoneSeeder::class);
+        $this->call(Modules\ModulesUniversalSeeder::class);
         
     }
     

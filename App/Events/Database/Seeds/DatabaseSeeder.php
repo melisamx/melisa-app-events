@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OptionsSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(EventsSeeder::class);
-        $this->call(Modules\ModulesDesktopSeeder::class);
+        $this->call(ModulesSeeder::class);
         
     }
     

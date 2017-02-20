@@ -23,6 +23,11 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.EventsGrid', {
             text: 'Evento descripción'
         },
         {
+            flex: 1,
+            dataIndex: 'identity',
+            text: 'Emitido por'
+        },
+        {
             width: 190,
             dataIndex: 'status',
             align: 'center',
@@ -59,6 +64,10 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.EventsGrid', {
     listeners: {
         selectionchange: 'onSelectionchangeEventsGrid',
         itemdblclick: 'onItemdblclickEventsGrid'
+    },
+    bbar: {
+        xtype: 'pagingtoolbar',
+        displayInfo: true
     }
     
 });

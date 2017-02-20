@@ -5,7 +5,8 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.Wrapper', {
         'Melisa.core.Module',
         'Melisa.events.view.desktop.binnacle.view.EventsGrid',
         'Melisa.events.view.desktop.binnacle.view.ListenersGrid',
-        'Melisa.events.view.desktop.binnacle.view.WrapperController'
+        'Melisa.events.view.desktop.binnacle.view.WrapperController',
+        'Melisa.events.view.universal.binnacle.view.WrapperModel'
     ],
     
     mixins: [
@@ -14,16 +15,10 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.Wrapper', {
     
     controller: 'eventsbinnacleviewwrapper',
     cls: 'app-binnacle-view',
-    viewModel: {
-        data: {
-            event: {}
-        },
-        stores: {
-            events: {},
-            listeners: {}
-        }
-    },
     layout: 'border',
+    viewModel: {
+        type: 'eventsbinnacleview'
+    },
     items: [
         {
             xtype: 'container',
@@ -51,13 +46,13 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.Wrapper', {
             reference: 'panDetalles',
             region: 'east',
             title: 'Data del evento',
+            tpl: '<pre>{data}</pre>',
             split: true,
             collapsible: true,
-            width: 400,
-            bodyPadding: 10,
             scrollable: true,
             collapsed: true,
-            tpl: '<pre>{data}</pre>'
+            width: 400,
+            bodyPadding: 10
         }
     ]
     
