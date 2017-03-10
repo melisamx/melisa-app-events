@@ -16,6 +16,7 @@ Ext.define('Melisa.events.view.desktop.binnacle.view.Wrapper', {
     controller: 'eventsbinnacleviewwrapper',
     cls: 'app-binnacle-view',
     layout: 'border',
+    iconCls: 'x-fa fa-bolt',
     viewModel: {
         type: 'eventsbinnacleview'
     },
