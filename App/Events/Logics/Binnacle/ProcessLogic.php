@@ -156,10 +156,12 @@ class ProcessLogic
         
         $flag = true;
         $idsListeners = [];
+        $idIdentity = $this->getIdentity();
         
         foreach($listeners as $listener) {
             
             $idListener = $this->binnacleListeners->create([
+                'idIdentityCreated'=>$idIdentity,
                 'idBinnacleListenerStatus'=>BinnacleListenersRepository::NEW_RECORD,
                 'idBinnacle'=>$idBinnacle,
                 'idListener'=>$listener->id,
