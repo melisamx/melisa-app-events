@@ -13,7 +13,7 @@ class ApplicationSeeder extends InstallSeeder
             'description'=>'Application Events',
             'nameSpace'=>'Melisa.events',
             'typeSecurity'=>'art',
-            'version'=>'1.1.1'
+            'version'=>'1.1.2'
         ]);
         
     }
