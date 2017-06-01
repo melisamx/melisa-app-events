@@ -1,4 +1,6 @@
-<?php namespace App\Events\Database\Seeds;
+<?php
+
+namespace App\Events\Database\Seeds;
 
 use Melisa\Laravel\Database\InstallSeeder;
 
@@ -13,7 +15,7 @@ class ApplicationSeeder extends InstallSeeder
             'description'=>'Application Events',
             'nameSpace'=>'Melisa.events',
             'typeSecurity'=>'art',
-            'version'=>'1.1.2'
+            'version'=>'1.2.0'
         ]);
         
     }
