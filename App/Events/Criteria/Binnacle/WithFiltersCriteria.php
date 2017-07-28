@@ -1,7 +1,8 @@
-<?php namespace App\Events\Criteria\Binnacle;
+<?php
+
+namespace App\Events\Criteria\Binnacle;
 
 use Melisa\Laravel\Criteria\FilterCriteria;
-use Melisa\Repositories\Contracts\RepositoryInterface;
 use Melisa\Laravel\Criteria\ApplySort;
 
 /**
@@ -13,9 +14,8 @@ class WithFiltersCriteria extends FilterCriteria
 {
     use ApplySort;
     
-    public function apply($model, RepositoryInterface $repository, array $input = [])
-    {
-        
+    public function apply($model, $repository, array $input = [])
+    {        
         $builder = parent::apply($model, $repository, $input);        
         $builder = $this->applySort($builder, $input);
         
