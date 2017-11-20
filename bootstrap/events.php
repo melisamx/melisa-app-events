@@ -11,15 +11,9 @@
 |
 */
 
-require_once __DIR__ . '/../App/Events/Application.php';
+use App\Events\Application;
 
-$app = new App\Events\Application(
-    [
-        'base'=>  realpath(__DIR__ . '/../App/Events'),
-        'storage'=> realpath(__DIR__ . '/../App/Events/storage'),
-        'storageSession'=>realpath(__DIR__ . '/../storage/framework/sessions'),
-    ]
-);
+$app = new App\Events\Application(realpath(__DIR__ . '/../App/Events'));
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +28,7 @@ $app = new App\Events\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    Melisa\Laravel\Http\Kernel::class
+    Melisa\Laravel\Http\KernelSecure::class
 );
 
 $app->singleton(
